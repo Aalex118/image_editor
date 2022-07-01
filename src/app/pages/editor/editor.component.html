@@ -1,0 +1,79 @@
+<ng-content></ng-content>
+<h1>Üdv az oldalon!</h1>
+
+<div class="header justify-content-center">
+    <h2>Válassz egy képet!</h2>    
+</div>
+
+<div class="container">
+    <div class="image">
+        <image-cropper
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="true"
+        [containWithinAspectRatio]="containWithinAspectRatio"
+        [aspectRatio]="4 / 3"
+        [resizeToWidth]="256"
+        [cropperMinWidth]="128"
+        [onlyScaleDown]="true"
+        [roundCropper]="false"
+        [canvasRotation]="canvasRotation"
+        [transform]="transform"
+        [alignImage]="'left'"
+        [style.display]="showCropper ? null : 'none'"
+        format="png"
+        (imageCropped)="imageCropped($event)"
+        (imageLoaded)="imageLoaded()"
+        (cropperReady)="cropperReady($event)"
+        (loadImageFailed)="loadImageFailed()"
+        [style.filter]="
+    'grayscale('+grayScale+') sepia('+sepia+') hue-rotate('+hueRotate+'deg) 
+    saturate('+saturate+') brightness('+brightness+') blur('+blur+'px)'" 
+    ></image-cropper>
+    <br/>
+    <br/>
+    <br/>
+    <img class="img" [src]="croppedImage" [style.filter]="
+    'grayscale('+grayScale+') sepia('+sepia+') hue-rotate('+hueRotate+'deg) 
+    saturate('+saturate+') brightness('+brightness+') blur('+blur+'px)'" [style.height]="croppedImage ? '200px' : 'none'" />
+    </div>
+    <div class="editor">
+        <h5 class="card-title">Eszköztár:</h5>
+        <input type="file" (change)="fileChangeEvent($event)" [style.margin-left]="'20%'"/>
+    <br />
+    <br />
+    <button mat-raised-button (click)="rotateLeft()" title="Forgatás balra">Forgatás balra</button>
+    <button mat-raised-button (click)="rotateRight()"title="Forgatás jobbra" >Forgatás jobbra</button>
+    <button mat-raised-button (click)="flipHorizontal()"title="Horizontális" >Tükrözés vízszintesen</button>
+    <button mat-raised-button (click)="flipVertical()"title="Vertikális" >Tükrözés függőlegesen</button>
+    <br />
+    <br />
+    <button mat-raised-button (click)="toggleContainWithinAspectRatio()">{{containWithinAspectRatio?'Képarány visszaállítása':'Képarány visszaállítása'}}</button>
+    <button mat-raised-button (click)="resetImage()">Kép visszaállítása</button>
+    <button mat-raised-button  (click)="sepia=0;grayScale=0;hueRotate=0;saturate=1;brightness=1;blur=0">Filterek visszaállítása</button><br/>
+    <br />
+    <button mat-raised-button  (click)="downloadImage()">Letöltés</button>
+    <br />
+    <br />
+
+    <input [(ngModel)]="rotation" placeholder="Rotation" type="number" (keyup)="updateRotation()" /> <button mat-raised-button (click)="zoomOut()">Zoom -</button> <button mat-raised-button (click)="zoomIn()">Zoom +</button><br/>
+        <input id="sepia"  type="range" [(ngModel)]="sepia"  step="0.1" min="0" max="1" class="slider"> Sepia
+                      <span id="Amount_sepia">({{sepia}})</span><br/>
+                      <input id="grayscale" class="slider" type="range" [(ngModel)]="grayScale"  step="0.1" min="0" max="1"> Grayscale
+                      <span id="Amount_grayscale">({{grayScale}})</span><br/>
+                      <input id="grayscale" class="slider" type="range" [(ngModel)]="hueRotate"  step="1" min="0" max="360"> HueRotate
+                      <span id="Amount_grayscale">({{hueRotate}} deg)</span><br/>
+                      <input id="grayscale" class="slider" type="range" [(ngModel)]="saturate"  step="0.1" min="0" max="10"> Saturate
+                      <span id="Amount_grayscale">({{saturate*100| number:'0.0-0'}} %)</span><br/>
+                      
+                      <input id="brightness" class="slider" type="range" [(ngModel)]="brightness"  step="0.1" min="0" max="3"> Brightness
+                      <span id="Amount_brightness">({{brightness*100| number:'0.0-0'}} %)</span><br/>
+                      
+                      <input id="blur" class="slider" type="range" [(ngModel)]="blur"  step="0.1" min="0" max="10"> Blur
+                      <span id="Amount_blur">({{blur| number:'0.0-0'}} px)</span><br/><br/>    
+    </div>
+  </div>
+
+
+
+
+

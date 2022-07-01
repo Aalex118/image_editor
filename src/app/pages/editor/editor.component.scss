@@ -1,0 +1,146 @@
+$btnColor: grey;
+$fontWeight: bold;
+html,
+body {
+  height: 100%;
+}
+p {
+  font-family: Lato;
+}
+.new {
+  height: 400px;
+}
+h1{
+  margin-top: 3%;
+  text-align: center;
+  font-weight: $fontWeight;
+  font-size: 50px;
+}
+h2{
+  text-align: center;
+  font-weight: $fontWeight;
+  margin-right:20%;
+}
+
+h5{
+  font-size:large;
+  margin-top: 3%;
+  text-align: center;
+  font-weight: $fontWeight;
+  
+}
+.manipulation{
+  margin-top:2%;
+  margin-left: 40%;
+  justify-content: center;
+}
+
+#image{
+  border-radius: 2%;
+  
+  display: flex;
+  justify-content: center;
+}
+
+.flipped{
+  -webkit-transform: rotateY( 180deg );
+  -moz-transform: rotateY( 180deg );
+  -o-transform: rotateY( 180deg );
+  transform: rotateY( 180deg );
+}
+
+.mat-raised-button{
+  background-color: $btnColor;
+  color:white;
+  margin: 2px;
+}
+
+.slider{
+  border-radius: 5px;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+
+
+#onload{
+  margin-top: 20%;
+}
+
+.form-group{
+  margin-bottom: 2%;
+}
+
+img {
+  margin-bottom: 3%;
+}
+
+
+.btn-primary {
+  background-color: grey;
+  border: grey;
+
+}
+.btn-success{
+  background-color: grey;
+  border: grey;
+}
+
+.container {  
+
+  display: grid; 
+  grid-template-columns: auto auto auto; 
+  grid-template-rows: auto auto auto; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "image image editor"
+    ". . ."
+    ". . ."; 
+}
+.editor{
+  margin-right:2%;
+}
+.img { 
+
+  margin-left: 25%;
+  grid-area: 2 / 1 / 3 / 3; 
+  
+}
+.image { 
+  margin-left: 5%;
+  grid-area: image; 
+  height: 600px;
+  width: 600px;
+  background-color:transparent; 
+  border-radius: 20%;
+}
+.editor { 
+  grid-area: editor; 
+  background-color: rgb(194, 194, 189);
+  border-radius: 2%;
+  padding-bottom: 10%;
+  padding-left: 5%;
+}
+.header {
+  margin-left: 15rem; 
+  grid-area: 1 / 2 / 2 / 3; 
+  margin-bottom: 15%;
+}
+
+.imgDefault {
+  transform: rotateY(0);
+}
+
+.imgChange {
+  transform: rotateY(-0.5turn);
+}
+
+#page-content {
+  flex: 1 0 auto;
+}
